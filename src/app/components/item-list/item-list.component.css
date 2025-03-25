@@ -1,0 +1,13 @@
+.container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
