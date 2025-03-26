@@ -28,10 +28,40 @@
           </mat-error>
         </mat-form-field>
 
+<!-- Radio Buttons para Gênero -->
+<div class="full-width">
+  <mat-label>Gênero</mat-label>
+  <mat-radio-group formControlName="genero" required>
+    <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+    <mat-radio-button value="Feminino">Feminino</mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<!-- Select de Estados -->
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Estado</mat-label>
+  <mat-select formControlName="estado" required>
+    <mat-option *ngFor="let estado of estadosBrasileiros" [value]="estado.sigla">
+      {{estado.nome}} ({{estado.sigla}})
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
 
 
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <!-- ... outros campos do formulário ... -->
 
+  <mat-checkbox formControlName="aceitaTermos" color="primary">
+    Aceito os termos de uso
+  </mat-checkbox>
+
+  <mat-error *ngIf="itemForm.get('aceitaTermos')?.invalid && itemForm.get('aceitaTermos')?.touched">
+    Você deve aceitar os termos para continuar
+  </mat-error>
+
+  
+</form>
         <div class="button-group">
           <button mat-raised-button color="primary" type="submit" [disabled]="!itemForm.valid">
             Salvar
@@ -40,7 +70,9 @@
             Cancelar
           </button>
         </div>
-      </form>
+
+     </form>
+
     </mat-card-content>
   </mat-card>
 </div>

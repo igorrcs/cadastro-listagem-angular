@@ -7,13 +7,12 @@ import { ClienteService } from '../../services/cliente.service';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'age'];
+  displayedColumns: string[] = ['name', 'age', 'estado', 'genero']; // Adicionei estado e genero
   dataSource: any[] = [];
 
   constructor(private clienteService: ClienteService) {}
 
   ngOnInit() {
-    // Carrega os clientes do serviço
     this.dataSource = this.clienteService.obterClientes();
   }
 }
