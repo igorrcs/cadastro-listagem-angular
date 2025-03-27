@@ -54,7 +54,7 @@ export class ItemFormComponent {
       age: ['', [Validators.required, Validators.min(0), Validators.max(120)]],
       estado: ['', Validators.required],
       genero: ['', Validators.required],
-      aceitaTermos: [false, Validators.requiredTrue] // Novo campo checkbox
+      aceitaTermos: [false, Validators.requiredTrue]
     });
   }
 
@@ -65,8 +65,17 @@ export class ItemFormComponent {
         age: this.itemForm.value.age,
         estado: this.itemForm.value.estado,
         genero: this.itemForm.value.genero,
-        aceitaTermos: this.itemForm.value.aceitaTermos // Incluindo no objeto do cliente
+        aceitaTermos: this.itemForm.value.aceitaTermos
       };
+
+      // Exibe os dados no console (nova implementação)
+      console.log('Dados do formulário:', {
+        Nome: novoCliente.name,
+        Idade: novoCliente.age,
+        Estado: novoCliente.estado,
+        Gênero: novoCliente.genero,
+        'Aceitou Termos': novoCliente.aceitaTermos ? 'Sim' : 'Não'
+      });
 
       // Adiciona o cliente através do serviço
       this.clienteService.adicionarCliente(novoCliente);
@@ -78,6 +87,8 @@ export class ItemFormComponent {
 
       // Redireciona para a lista
       this.router.navigate(['/list']);
+    } else {
+      console.log('Formulário inválido:', this.itemForm.errors);
     }
   }
 
